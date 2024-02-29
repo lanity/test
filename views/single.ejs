@@ -1,0 +1,149 @@
+<div
+  class="hero-wrap js-fullheight"
+  style="background-image: url(/images/bg_1.jpg)"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="js-fullheight d-flex justify-content-center align-items-center">
+    <div class="col-md-8 text text-center">
+      <div class="desc">
+        <h1 class="mb-4">Blog Details</h1>
+        <p>
+          <a href="index" class="btn-custom mr-2"
+            >Home <span class="ion-ios-arrow-forward"></span
+          ></a>
+          <a href="index" class="btn-custom mr-2"
+            >Blog <span class="ion-ios-arrow-forward"></span
+          ></a>
+          <a href="index" class="btn-custom"
+            >Single <span class="ion-ios-arrow-forward"></span
+          ></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 ftco-animate">
+        <h2 class="mb-3 font-weight-bold"><%= data.title %></h2>
+        <p>Görüntüleme sayısı: <%= views %></p>
+
+        <% if (user) { %>
+        <form action="/posts/<%= data._id %>/like" method="post">
+          <input type="submit" value="Like" />
+        </form>
+        <% } else { %>
+        <p>Hoşgeldin misafir.</p>
+        <% } %>
+
+        <span
+          ><i style="padding-right: 5px" class="icon-heart"></i><%=
+          data.likes.length %></span
+        >
+
+        <p><%- data.body %></p>
+        <p>
+          <img src="/<%= data.postImage %>" alt="" class="img-fluid" />
+        </p>
+
+        <div class="tag-widget post-tag-container mb-5 mt-5">
+          <div class="tagcloud">
+            <a href="#" class="tag-cloud-link">Life</a>
+            <a href="#" class="tag-cloud-link">Sport</a>
+            <a href="#" class="tag-cloud-link">Tech</a>
+            <a href="#" class="tag-cloud-link">Travel</a>
+          </div>
+        </div>
+
+        <div class="about-author d-flex p-4 bg-light">
+          <div class="bio mr-5">
+            <img
+              src="/images/person_1.jpg"
+              alt="Image placeholder"
+              class="img-fluid mb-4"
+            />
+          </div>
+          <div class="desc">
+            <h3><%= data.author.name %></h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus
+              itaque, autem necessitatibus voluptate quod mollitia delectus aut,
+              sunt placeat nam vero culpa sapiente consectetur similique,
+              inventore eos fugit cupiditate numquam!
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-5">
+          <h3 class="mb-5 font-weight-bold">6 Comments</h3>
+          <ul class="comment-list">
+            <% commentList.forEach(comment => { %>
+            <li class="comment">
+              <div class="vcard bio">
+                <img src="/images/person_1.jpg" alt="Image placeholder" />
+              </div>
+              <div class="comment-body">
+                <h3><%= comment.name %></h3>
+                <div class="meta">October 03, 2018 at 2:21pm</div>
+                <p>
+                  <%= comment.comment %>
+                </p>
+                <p><a href="#" class="reply">Reply</a></p>
+              </div>
+            </li>
+            <% }) %>
+          </ul>
+
+          <!-- END comment-list -->
+
+          <div class="comment-form-wrap pt-5">
+            <h3 class="mb-5">Leave a comment</h3>
+            <form
+              action="/posts/<%= data.slug %>/addComment"
+              method="post"
+              class="p-3 p-md-5 bg-light"
+            >
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" class="form-control" name="name" id="name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" class="form-control" name="email" id="email" />
+              </div>
+              <div class="form-group">
+                <label for="website">Website</label>
+                <input type="url" class="form-control" name="website" id="website" />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  name="comment"
+                  id="message"
+                  cols="30"
+                  rows="10"
+                  class="form-control"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  value="Post Comment"
+                  class="btn py-3 px-4 btn-primary"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- .col-md-8 -->
+
+
+
+      <!-- END COL -->
+    </div>
+  </div>
+</section>

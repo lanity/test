@@ -1,0 +1,28 @@
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-6 ">
+        <% if (user) { %>
+            <p>Hoşgeldin <%= user.name %></p>
+           <% } else { %>
+            <p>Hoşgeldin misafir.</p>
+           <% } %>
+        </div>
+        <div class="col-md-6 text-right">
+        <form action="/logout" method="GET">
+            <button type="submit" class="btn btn-danger my-3">Logout</button>
+        </form>
+        </div>
+    </div>
+  
+
+    <form action="/users/edit/<%= users._id %>?_method=PUT" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="<%= users.name %>">
+        <label for="lastname">Lastname:</label>
+        <input type="text" name="lastname" value="<%= users.lastname %>">
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="<%= users.email %>">
+        <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
+    </form>
+
+</div>

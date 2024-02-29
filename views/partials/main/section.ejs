@@ -1,0 +1,88 @@
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-7 heading-section text-center ftco-animate">
+        <h2 class="mb-4">Articles</h2>
+        <p>
+          A small river named Duden flows by their place and supplies it with
+          the necessary regelialia. It is a paradisematic country.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <% posts.forEach(post => { %>
+      <div class="col-md-4">
+        <div class="blog-entry ftco-animate">
+          <a
+            href="#"
+            class="img img-2"
+            style="background-image: url(<%= post.postImage %>)"
+          ></a>
+          <div class="text text-2 pt-2 mt-3">
+            <span class="category mb-3 d-block"
+              ><a href="#"><%= post.categories %></a></span
+            >
+            <h3 class="mb-4">
+              <a href="/posts/<%= post.slug %>"><%= post.title %></a>
+            </h3>
+            <p class="mb-4"><%- post.body %></p>
+            <div class="author mb-4 d-flex align-items-center">
+              <a
+                href="#"
+                class="img"
+                style="background-image: url(images/person_2.jpg)"
+              ></a>
+              <div class="ml-3 info">
+                <span>Written by</span>
+                <h3>
+                  <a href="#"><%= post.author.name %></a>,
+                  <span><%= post.createdAt.toDateString() %></span>
+                </h3>
+              </div>
+            </div>
+            <div class="meta-wrap align-items-center">
+              <div class="half order-md-last">
+                <p class="meta">
+                  <span
+                    ><i class="icon-heart"></i><%= post.likes.length %></span
+                  >
+                  <span
+                    ><i class="icon-eye"></i><%= views[posts.indexOf(post)]
+                    %></span
+                  >
+                  <span><i class="icon-comment"></i>5</span>
+                </p>
+              </div>
+              <div class="half">
+                <p>
+                  <a href="#" class="btn py-2"
+                    >Continue Reading <span class="ion-ios-arrow-forward"></span
+                  ></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <nav aria-label="...">
+      <ul class="pagination">
+        <% if (page > 1) { %>
+        <li class="page-item">
+          <a class="page-link" href="?page=<%= page - 1 %>">Previous</a>
+        </li>
+        <% } %> <% for (let i = 1; i <= totalPages; i++) { %>
+        <li class="page-item <%= i === page ? 'active' : '' %>">
+          <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+        </li>
+        <% } %> <% if (page < totalPages) { %>
+        <li class="page-item">
+          <a class="page-link" href="?page=<%= page + 1 %>">Next</a>
+        </li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</section>
